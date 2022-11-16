@@ -18,7 +18,7 @@ mongoose.connect(DB, {
   useNewUrlParser: true
 })
 .then(()=>console.log("Database connection successful"))
-.catch(()=>console.log("Database connection failed"))
+.catch((err)=>console.log("Database connection failed",err))
 
 
 /**
