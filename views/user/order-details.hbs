@@ -1,0 +1,117 @@
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        <a href="/" class="stext-109 cl8 hov-cl1 trans-04">
+            Home
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+
+        <span class="stext-109 cl4">
+            Order details
+        </span>
+    </div>
+</div>
+
+
+<main class="main-content">
+    <div style="min-height: 100vh; padding-top: 20px;" class="product-area section-two-space">
+        <div class="product-area">
+            <div id="refreshh" class="container">
+                <div class="container py-5 h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-lg-10 col-xl-8">
+                            <div class="card" style="border-radius: 10px;">
+                                <div class="card-header px-4 py-5">
+                                    <h5 class="text-muted mb-0">Order details</h5>
+                                </div>
+                                <div id="cancel-refresh" class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="small text-muted mb-0">Order ID : {{order._id}}</p>
+                                        {{#if (eq order.orderStatus "cancelled")}}
+                                        <p style="color: #e73c17;" class="main-nav-link">CANCELLED</p>
+                                        {{else}}
+                                        <button onclick="cancelOrder('{{order._id}}')" style="min-width: 0px;"
+                                            class="btn">Cancel this order</button>
+                                        {{/if}}
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <p class="small text-muted mb-0">Order date : {{order.date}}</p>
+                                    </div>
+                                    <div>
+                                        {{#each order.products}}
+                                        <div class="card shadow-0 border mb-4">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <img src="/productsImages/{{this.product.image.[0]}}"
+                                                            class="img-fluid" alt="">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p class="text-muted mb-0">{{this.product.name}}</p>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <p class="text-muted mb-0 small">Qty: {{this.quantity}}</p>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <p class="text-muted mb-0 small">₹ {{this.pricePerItem}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{/each}}
+                                    </div>
+                                    {{!-- {{/each}} --}}
+
+                                    <div class="d-flex justify-content-between pt-2">
+                                        <p class="text-muted mb-0"><span class="fw-bold me-4"></span></p>
+                                        <p class="text-muted mb-0"><span class="fw-bold me-4">Subtotal:</span>₹
+                                            {{order.subtotal}}.00</p>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between pt-2">
+                                        <p class="text-muted mb-0"><span class="fw-bold me-4">Shipping address:</span>
+                                        </p>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between  ">
+                                        <p class="text-muted mb-0">{{address.name}} {{address.house}},</p>
+                                        {{#if order.coupon}}
+                                        <p class="text-muted mb-0"><span class="fw-bold me-4">Coupon
+                                                used</span>{{order.coupon}}</p>
+                                        {{/if}}
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <p class="text-muted mb-0">{{address.locality}} {{address.area}},</p>
+                                        <p class="text-muted mb-0"><span class="fw-bold me-4">Coupon discount</span> ₹
+                                            {{order.discount}}.00</p>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between mb-5">
+                                        <p class="text-muted mb-0">{{address.landmark}}, {{address.pincode}}</p>
+                                        <p class="text-muted mb-0"><span class="fw-bold me-4">Delivery
+                                                Charges</span> ₹ 50.00</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-5">
+                                        <p class="text-muted mb-0"></p>
+                                        <p class="small text-muted mb-0">Payment mode: {{order.paymentMethod}}</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer border-0 px-4 py-5"
+                                    style="background-color: #d2e28b; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                                    <h5
+                                        class="d-flex align-items-center justify-content-end text-dark text-uppercase mb-0">
+                                        Total
+                                        amount: <span class="h2 mb-0 ms-2">₹ {{order.net}}.00</span></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--== End Product Filter Area Wrapper ==-->
+
+</main>
