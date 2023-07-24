@@ -49,10 +49,10 @@ router.delete('/delete-banner/:id', middleware.adminLogin, adminController.delet
    
 router
     .route('/coupon')
-    .get( middleware.adminLogin, adminController.coupon)
+    .get( middleware.adminLogin,adminController.coupon)
     .post(middleware.adminLogin,adminController.addCoupon)    
 
-router.delete('/delete-coupon/:id', middleware.adminLogin, adminController.deleteCoupon)
+router.delete('/delete-coupon/:id',  adminController.deleteCoupon)
 
 router.get('/orders', middleware.adminLogin, adminController.orders)
 

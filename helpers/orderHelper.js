@@ -35,7 +35,8 @@ exports.placeOrder = (body, userId, couponData) => {
         for (let i = 0; i < cartData.length; i++) {
             subtotal = subtotal + (cartData[i].pricePerItem * cartData[i].quantity)
         }
-        let users = await couponModel.findOne({ userId: { "$in": [userId] } })
+        try {
+            let users = await couponModel.findOne({ userId: { "$in": [userId] } })
 
         if (!users) {
             if (couponData) {
@@ -77,13 +78,18 @@ exports.placeOrder = (body, userId, couponData) => {
                     }
                 })
             }
+            // console.log("id.....", _id);
             res(response._id)
+
         })
     }else{
         discount = 0
         coupon = "-" 
         res('nocoupon') 
     }
+        } catch (error) {
+            rej(error)
+        }
     })
 }
 
